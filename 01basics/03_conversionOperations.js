@@ -25,3 +25,15 @@ let someNumber = "3"
 let stringNumber = String(someNumber)
 console.log(stringNumber)
 console.log(typeof stringNumber)
+
+// *************************OPERATIONS***************************
+
+let str1 = "mohan"
+let str2 = " aman"
+
+let str3 = str1 + str2
+console.log(str3);
+
+console.log("1" + 3); // 13
+console.log("1" + 3 + 3); // 133
+console.log(1 + 3 + "3"); // 43
