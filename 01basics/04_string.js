@@ -1,3 +1,5 @@
+// *************************String Operations*****************************************
+
 // method 1 to declare string.
 
 let name = "ajay"
@@ -34,4 +36,3 @@ console.log(url.includes('google'))
 
 let newName = "ajay-arun-kiran"
 console.log(newName.split('-'))
-
