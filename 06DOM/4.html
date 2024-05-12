@@ -1,0 +1,51 @@
+<!-- Edit and Remove DOM element -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit and Remove DOM element</title>
+</head>
+<body style="background-color : #212121; color : #fff;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    // here we created our list...................
+    const newLi = document.createElement('li')
+    const content = document.createTextNode('C++')
+    newLi.appendChild(content)
+
+    const parent = document.querySelector('ul')
+    parent.appendChild(newLi)
+
+    // By using function...............
+    function addLanguage(lang){
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(lang))
+        document.querySelector('.language').appendChild(li)
+    }
+
+    addLanguage("python")
+    addLanguage(".net")
+    addLanguage("C")
+
+    // Now, we have to edit it second list......................
+    const li = document.querySelector('li:nth-child(2)')
+    
+    const newLi1 = document.createElement('li')
+    newLi1.appendChild(document.createTextNode('Java'))
+    li.replaceWith(newLi1) 
+
+    // 2nd way to edit list..............
+    const li2 = document.querySelector('li')
+    li2.outerHTML = '<li>TypeScript</li>'
+
+    //Now, we have to remove element from list...................
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove()
+</script>
+</html>
