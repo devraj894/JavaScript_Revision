@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // NOTE:- previouse functions used in js in place of addEventListener() but now only used addEventListener()
+    // attachEvent()
+    // jQuery - on
+    document.getElementById('owl').addEventListener('click', (e) =>{
+        // here e -------> Object
+        console.log(e)
+    }, false) // by default always false that's why no need to write and it also known as event bubbling and comes under Event Propagation concept
+
+    // types of events are:-
+    // 1) type of mouse/keyboart events
+    // 2) timestamp
+    // 3) defaultPrevented
+    // 4) target
+    // 5) toElement
+    // 6) srcElement
+    // 7) currentTarget
+    // 8) clientX, clientY, screenX, screenY
+    // 9) altkey, ctrlKey, shiftKey, keyCode
+
+    // Event Propagation :-
+    // 1) Event Bubbling
+    // it is just like bubble ie. bottom-up approach.
+    document.getElementById('images').addEventListener('click', (e)=>{
+        console.log("clicked inside ul")
+    }, false)
+    document.getElementById('owl').addEventListener('click', (e)=>{
+        console.log("clicked owl")
+        e.stopPropagation() // it will stop bubbling
+    }, false)
+    
+    // 2) Event Capturing
+    // it is top-bottom approach.
+    document.getElementById('images').addEventListener('click', (e)=>{
+        console.log("clicked inside ul")
+        e.stopPropagation() // it will stop capturing and stop event at parent
+    }, true)
+    document.getElementById('owl').addEventListener('click', (e)=>{
+        console.log("clicked owl")
+    }, true)
+
+    // preventDefault()
+    // it will stop the default behaviour of something like,
+    document.getElementById('google').addEventListener('click', (e)=>{
+        e.preventDefault(); // now google will not open by using this link
+        console.log("You clicked me");
+    })
+
+    // remove picture by clicking...............................
+    const images = document.querySelector('#images');
+
+    images.addEventListener('click', (e) =>{
+        console.log(e) // print current pointer's hight, width detail
+        console.log(e.target) // print image src original content
+        console.log(e.target.tagName) // print IMG as tagName
+        
+        if(e.target.tagName == 'IMG'){  
+            console.log(e.target.parentNode) // print li as parent of img
+            const currImage = e.target.parentNode
+            currImage.remove() // remove clicked li
+        }
+
+    })
+
+</script> 
+</html>
