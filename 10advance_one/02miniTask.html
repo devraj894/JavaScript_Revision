@@ -1,0 +1,43 @@
+<!-- Our task is to by pressing button on a page then generate
+profile pic and followers -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Task</title>
+</head>
+<body>
+    <div class="container">
+        <button id="btn">Press</button>
+        <img src="" alt="">
+    </div>
+</body>
+<script>
+    const container = document.querySelector('.container')
+    const button = document.querySelector('#btn')
+    const apiRequest = 'https://api.github.com/users/hiteshchoudhary'
+
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', apiRequest)
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            const data = JSON.parse(this.responseText)
+
+            button.addEventListener('click', () => {
+                const newElement = document.createElement('img')
+                newElement.setAttribute('src', `${data.avatar_url}`);
+                container.appendChild(newElement)
+
+                const followersElement = document.createElement('h1'); 
+                followersElement.appendChild(document.createTextNode(`Followers : ${data.followers}`))
+                container.appendChild(followersElement)
+            })
+        }
+    }
+
+    xhr.send()
+</script>
+</html>

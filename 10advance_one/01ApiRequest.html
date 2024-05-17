@@ -1,0 +1,41 @@
+<!-- NOTE:- Before 'fetch()' there was 'XMLHttpRequest' to handle api's -->
+<!-- and it is fully AJAX Progamming means Asynchronouse Javascript and XML -->
+
+<!-- Value	    State	            Description
+
+      0	        UNSENT	           Client has been created. open() not called yet.
+      1	        OPENED	           open() has been called.
+      2	       HEADERS_RECEIVED    send() has been called, and headers and status are available.
+      3	       LOADING	           Downloading; responseText holds partial data.
+      4	        DONE	           The operation is complete. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style = "background-color: #212121;">
+    
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/devraj894'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET',requestUrl) // open is used to send request on API but it not called yet.
+
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState); // here we are keeping track of every state change because it needs function for work so we done it by using function
+
+        if(xhr.readyState == 4){
+            console.log(this.responseText) // responseText is keyward which stores the response of current api
+            const data = JSON.parse(this.responseText) // we got API but currently it is typof string so we converted it into object by using JSON.parse
+            console.log(data.id) // here we accessed id of API object 
+        }
+    }
+
+    xhr.send() // here open has been called now
+
+    
+</script>
+</html>
